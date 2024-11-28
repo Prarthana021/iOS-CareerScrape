@@ -35,16 +35,6 @@
 			path = "iOS-CareerScrape";
 			sourceTree = "<group>";
 		};
-		39ABA1952CB9E5BB005FDD6B /* iOS-CareerScrapeTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "iOS-CareerScrapeTests";
-			sourceTree = "<group>";
-		};
-		39ABA19F2CB9E5BB005FDD6B /* iOS-CareerScrapeUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "iOS-CareerScrapeUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				39ABA1842CB9E5B9005FDD6B /* iOS-CareerScrape */,
-				39ABA1952CB9E5BB005FDD6B /* iOS-CareerScrapeTests */,
-				39ABA19F2CB9E5BB005FDD6B /* iOS-CareerScrapeUITests */,
 				39ABA1832CB9E5B9005FDD6B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,9 +118,6 @@
 			dependencies = (
 				39ABA1942CB9E5BB005FDD6B /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				39ABA1952CB9E5BB005FDD6B /* iOS-CareerScrapeTests */,
-			);
 			name = "iOS-CareerScrapeTests";
 			packageProductDependencies = (
 			);
@@ -152,9 +137,6 @@
 			);
 			dependencies = (
 				39ABA19E2CB9E5BB005FDD6B /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				39ABA19F2CB9E5BB005FDD6B /* iOS-CareerScrapeUITests */,
 			);
 			name = "iOS-CareerScrapeUITests";
 			packageProductDependencies = (
