@@ -30,9 +30,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		39ABA1842CB9E5B9005FDD6B /* IOS-CareerScrape */ = {
+		39ABA1842CB9E5B9005FDD6B /* iOS-CareerScrape */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "IOS-CareerScrape";
+			path = "iOS-CareerScrape";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -65,7 +65,7 @@
 		39ABA1792CB9E5B9005FDD6B = {
 			isa = PBXGroup;
 			children = (
-				39ABA1842CB9E5B9005FDD6B /* IOS-CareerScrape */,
+				39ABA1842CB9E5B9005FDD6B /* iOS-CareerScrape */,
 				39ABA1832CB9E5B9005FDD6B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,7 +96,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				39ABA1842CB9E5B9005FDD6B /* IOS-CareerScrape */,
+				39ABA1842CB9E5B9005FDD6B /* iOS-CareerScrape */,
 			);
 			name = "iOS-CareerScrape";
 			packageProductDependencies = (
