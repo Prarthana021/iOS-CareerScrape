@@ -38,6 +38,7 @@ class AuthService{
                 return
             }
             UserDefaults.standard.set(token, forKey: self.tokenKey)
+            print("from auth service. \(token)")
             completion(.success(()))
             
         }.resume()

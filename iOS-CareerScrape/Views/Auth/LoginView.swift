@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State var username = ""
     @State var password = ""
-    
+    @StateObject private var viewModel = AuthViewModel()
     var body: some View {
         NavigationView {
             VStack() {
@@ -37,7 +37,7 @@ struct LoginView: View {
                     .padding(.bottom, 40)
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    TextField("Username", text: $username)
+                    TextField("Username", text: $viewModel.username)
                         .autocapitalization(.none)
                         .disableAutocorrection(true)
                         .padding()
@@ -45,12 +45,23 @@ struct LoginView: View {
                         .cornerRadius(25.0)
                         .shadow(radius: 10.0, x: 5, y: 10)
                     
-                    SecureField("Password", text: $password)
+                    SecureField("Password", text: $viewModel.password)
                         .textContentType(.password)
                         .padding()
                         .background(Color(.white))
                         .cornerRadius(25.0)
                         .shadow(radius: 10.0, x: 5, y: 10)
+                    // TODO: progressView
+                    if viewModel.isLoading{
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .red))
+                            .padding(.top,20)
+                    }
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                            .padding(.top,10)
+                    }
                 }
                 .padding([.leading, .trailing], 50)
                 
@@ -99,7 +110,8 @@ struct LoginView: View {
     }
     
     func submit() {
-        print("Username: \(username), Password: \(password)")
+        print("\(viewModel.username) \(viewModel.password)")
+        viewModel.login()
     }
 }
 
