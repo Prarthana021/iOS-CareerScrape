@@ -9,3 +9,53 @@
 *.xcuserstate
 xcuserdata/
 
+# Xcode
+*.xcworkspace
+*.xcuserstate
+xcuserdata/
+DerivedData/
+.idea/
+*.lock
+
+# Swift Package Manager
+.build/
+*.resolved
+Package.resolved
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# Carthage
+Carthage/Checkouts
+Carthage/Build
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Temporary Files
+*.swp
+*.swo
+*.DS_Store
+*.tmp
+*.log
+
+# Archives
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Build Artifacts
+build/
+*.app
+*.xcarchive
+
+# Testing
+*.gcda
+*.gcno
+*.gcov
+test-output/
+
