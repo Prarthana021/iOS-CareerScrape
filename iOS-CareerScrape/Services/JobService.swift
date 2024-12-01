@@ -11,7 +11,7 @@ class JobService{
     static let shared=JobService()
     private init (){}
     
-    private let baseURL = "https://api.careerscrape.com/jobs"
+    private let baseURL = "https://api.careerscrape.com"
     
     func fetchJobs(completion: @escaping (Result<[Job], Error>) -> Void){
         let url = URL(string: "\(baseURL)/jobs")!
