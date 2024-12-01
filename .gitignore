@@ -5,3 +5,7 @@
 //  Created by Safal Gautam on 11/28/24.
 //
 .DS_Store
+# Ignore Xcode user-specific files
+*.xcuserstate
+xcuserdata/
+
