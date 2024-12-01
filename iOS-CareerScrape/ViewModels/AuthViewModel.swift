@@ -11,6 +11,7 @@ class AuthViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var rePassword:String = ""
     @Published var isAdmin: Bool = false
     
     // State management
@@ -41,8 +42,13 @@ class AuthViewModel: ObservableObject {
     }
     
     func singnup(){
-        guard !username.isEmpty, !password.isEmpty, !email.isEmpty else{
+        guard !username.isEmpty, !password.isEmpty, !rePassword.isEmpty, !email.isEmpty else{
             errorMessage="Username, email, and password cannot be empty"
+            return
+        }
+        
+        guard password==rePassword else{
+            errorMessage = "Passwords should match"
             return
         }
         

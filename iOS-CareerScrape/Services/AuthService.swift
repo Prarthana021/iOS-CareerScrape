@@ -13,6 +13,7 @@ class AuthService{
     private let baseURL = "https://api.careerscrape.com/users"
     
     private let tokenKey = "jwtToken"
+    private let currentUser = "currentUser"
     func login(username:String, password:String, completion: @escaping (Result<Void,Error>)->Void){
         guard let url = URL(string: "\(baseURL)/login") else {return}
         
@@ -38,7 +39,18 @@ class AuthService{
                 return
             }
             UserDefaults.standard.set(token, forKey: self.tokenKey)
-            print("from auth service. \(token)")
+            if let userDict = json["user"] as? [String:Any] {
+                do {
+                    let userData = try JSONSerialization.data(withJSONObject: userDict)
+                    let user = try JSONDecoder().decode(AuthUser.self, from: userData)
+                    print(user)
+                    let encodedUser = try JSONEncoder().encode(user)
+                    UserDefaults.standard.set(encodedUser, forKey: self.currentUser)
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
             completion(.success(()))
             
         }.resume()
@@ -70,15 +82,29 @@ class AuthService{
                 return
             }
             
-            guard let data = data,
-                  let json = try? JSONSerialization.jsonObject(with: data) as?  [String:Any] else {
+            guard let data = data, let json = try? JSONSerialization.jsonObject(with: data) as?  [String:Any] else {
                 completion(.failure(NSError(domain: "Invalid Response", code:0, userInfo: nil)))
                 return
             }
             
             if let token = json["token"] as? String {
                 UserDefaults.standard.set(token, forKey: self.tokenKey)
+                
+                if let userDict = json["user"] as? [String:Any] {
+                    do {
+                        let userData = try JSONSerialization.data(withJSONObject: userDict)
+                        let user = try JSONDecoder().decode(AuthUser.self, from: userData)
+                        
+                        let encodedUser = try JSONEncoder().encode(user)
+                        UserDefaults.standard.set(encodedUser, forKey: self.currentUser)
+                    }
+                    catch {
+                        completion(.failure(error))
+                    }
+                }
+                
             }
+            // TODO: handle error response from the server
             
             completion(.success(()))
             

@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State private var username = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+    @StateObject private var viewModel = AuthViewModel()
     
     var body: some View {
         NavigationView {
@@ -32,7 +29,7 @@ struct SignUpView: View {
                             .padding(.top, 20)
                         
                         // Username field
-                        TextField("Username", text: $username)
+                        TextField("Username", text: $viewModel.username)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
@@ -41,7 +38,7 @@ struct SignUpView: View {
                             .disableAutocorrection(true)
                         
                         // Email field
-                        TextField("Email", text: $email)
+                        TextField("Email", text: $viewModel.email)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
@@ -51,23 +48,34 @@ struct SignUpView: View {
                             .keyboardType(.emailAddress)
                         
                         // Password field
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
                             .padding()
                             .background(Color.white)
                             .cornerRadius(10)
                             .shadow(radius: 5)
                         
                         // Confirm Password field
-                        SecureField("Confirm Password", text: $confirmPassword)
-                            .padding()
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 5)
+                        SecureField("Confirm Password", text: $viewModel
+                            .rePassword)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .shadow(radius: 5)
+                        
+                        if viewModel.isLoading{
+                            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .red))
+                                .padding(.top, 20)
+                        }
+                        if let errorMessage = viewModel.errorMessage{
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                                .padding(.top, 20)
+                        }
                         
                         // Sign Up button
                         Button(action: {
                             // Handle Sign Up action here
-                            print("Sign Up clicked")
+                            submit()
                         }) {
                             Text("Sign Up")
                                 .font(.headline)
@@ -84,7 +92,7 @@ struct SignUpView: View {
                         // Log in with Google button
                         Button(action: {
                             // Handle Google login action here
-                            print("Log in with Google clicked")
+                            print("login with google")
                         }) {
                             HStack {
                                 Image("logogoogle") // Use the custom Google logo image from assets
@@ -107,7 +115,7 @@ struct SignUpView: View {
                         HStack {
                             Text("Already have an account?")
                                 .foregroundColor(.black)
-                            NavigationLink(destination: ContentView()) {
+                            NavigationLink(destination: LoginView()) {
                                 Text("Sign In")
                                     .foregroundColor(.blue)
                             }
@@ -135,6 +143,9 @@ struct SignUpView: View {
                 }
             }
         }
+    }
+    func submit(){
+        viewModel.singnup()
     }
 }
 
