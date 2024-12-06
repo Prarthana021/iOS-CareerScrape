@@ -18,15 +18,35 @@ struct JobView: View{
             Text("Error: \(error.localizedDescription)").foregroundColor(.red)
         }
         else{
-            List(viewModel.jobs, id: \.id){ job in
-                VStack(alignment: .leading){
-                    Text(job.jobTitle).font(.headline)
-                    Text(job.companyName).font(.subheadline)
-                }
-            
-            }.onAppear {
+            NavigationView{
+                List(viewModel.jobs, id: \.id){ job in
+                    VStack(alignment: .leading){
+                        HStack{
+                            
+                            Text(job.jobTitle).font(.headline).fontWeight(.bold)
+                            Spacer()
+                            HStack{
+                                Image(systemName:"mappin").foregroundColor(.red)
+                                Text(job.jobLocation).font(.subheadline).foregroundColor(.gray)
+                            }
+                            
+                        }
+                        
+                        HStack{
+                            Text(job.companyName).font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Spacer()
+                            
+                            Text(job.jobPosted).foregroundColor(.green)
+                            
+                        }
+                        
+                    }
+                    
+                }.navigationTitle("Job Listings")
+            }
+            .onAppear {
                 viewModel.fetchJobs()
-                
             }
         }
     }
