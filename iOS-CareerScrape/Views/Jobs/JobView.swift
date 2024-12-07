@@ -20,24 +20,29 @@ struct JobView: View{
         else{
             NavigationView{
                 List(viewModel.jobs, id: \.id){ job in
-                    VStack(alignment: .leading){
-                        HStack{
-                            
-                            Text(job.jobTitle).font(.headline).fontWeight(.bold)
-                            Spacer()
+                    NavigationLink(destination: JobDetailView(job: job)){
+                        
+                        
+                        VStack(alignment: .leading){
                             HStack{
-                                Image(systemName:"mappin").foregroundColor(.red)
-                                Text(job.jobLocation).font(.subheadline).foregroundColor(.gray)
+                                
+                                Text(job.jobTitle).font(.headline).fontWeight(.bold)
+                                Spacer()
+                                HStack{
+                                    Image(systemName:"mappin").foregroundColor(.red)
+                                    Text(job.jobLocation).font(.subheadline).foregroundColor(.gray)
+                                }
+                                
                             }
                             
-                        }
-                        
-                        HStack{
-                            Text(job.companyName).font(.subheadline)
-                                .foregroundColor(.secondary)
-                            Spacer()
-                            
-                            Text(job.jobPosted).foregroundColor(.green)
+                            HStack{
+                                Text(job.companyName).font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                Spacer()
+                                
+                                Text(job.jobPosted).foregroundColor(.green)
+                                
+                            }
                             
                         }
                         
