@@ -66,23 +66,23 @@ struct JobDetailView:View {
         
     }
 }
-struct JobDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        JobDetailView(job: Job(
-            id: "123e4567-e89b-12d3-a456-426614174000",
-            jobTitle: "Software Engineer",
-            jobLink: "https://example.com/jobs/software-engineer",
-            jobLocation: "New York, NY",
-            companyName: "Tech Solutions Inc.",
-            jobType: "Full-time",
-            companyDomain: "techsolutions.com",
-            jobLevel: "Entry Level",
-            companyLink: "https://techsolutions.com",
-            description: "We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.",
-            pulledDate: "2024-10-20T14:30:00Z",
-            exactDate: "2024-10-17T09:00:00Z",
-            jobPosted: "3 days ago"
-        ))
-        
-    }
-}
+//struct JobDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        JobDetailView(job: Job(
+//            id: "123e4567-e89b-12d3-a456-426614174000",
+//            jobTitle: "Software Engineer",
+//            jobLink: "https://example.com/jobs/software-engineer",
+//            jobLocation: "New York, NY",
+//            companyName: "Tech Solutions Inc.",
+//            jobType: "Full-time",
+//            companyDomain: "techsolutions.com",
+//            jobLevel: "Entry Level",
+//            companyLink: "https://techsolutions.com",
+//            description: "We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.We are looking for a passionate software engineer to join our team. The ideal candidate should have experience in Golang and React.",
+//            pulledDate: "2024-10-20T14:30:00Z",
+//            exactDate: "2024-10-17T09:00:00Z",
+//            jobPosted: "3 days ago"
+//        ))
+//        
+//    }
+//}
