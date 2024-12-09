@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct HomeView: View{
-    @StateObject private var viewModel = AuthViewModel()
+    @EnvironmentObject private var viewModel: AuthViewModel
     var body: some View{
         if viewModel.isLoggedIn{
-            Text("Welcome to home")
+            JobView()
         }
         else{
-            LoginView().environmentObject(viewModel)
+            LoginView()
         }
         
         

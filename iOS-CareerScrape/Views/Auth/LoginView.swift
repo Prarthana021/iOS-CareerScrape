@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
-      @StateObject private var viewModel = AuthViewModel()
-//    @EnvironmentObject private var viewModel: AuthViewModel
+//      @StateObject private var viewModel = AuthViewModel()
+    @EnvironmentObject private var viewModel: AuthViewModel
     var body: some View {
         NavigationView {
             VStack() {
@@ -111,12 +111,13 @@ struct LoginView: View {
     func submit() {
         print("\(viewModel.username) \(viewModel.password)")
         viewModel.login()
+       print( viewModel.isLoggedIn)
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        LoginView().environmentObject(AuthViewModel())
     }
 }
 

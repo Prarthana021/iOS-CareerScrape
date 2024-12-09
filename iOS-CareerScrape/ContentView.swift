@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var authModel: AuthViewModel
+    @EnvironmentObject private var viewModel: AuthViewModel
     var body: some View {
-        VStack {
-            Text("This is a career Scrape!")
+        Group{
+            if authModel.isLoggedIn{
+                //HomeView()
+//                JobView()
+                ProfileView()
+            }
+            else{
+                LoginView()
+            }
+        }.onAppear{
+            print("auth please...", authModel.isLoggedIn)
         }
-        .padding()
+        
+        
     }
 }
 
+
+
 #Preview {
-    ContentView()
+    
+    ContentView().environmentObject(AuthViewModel())
 }

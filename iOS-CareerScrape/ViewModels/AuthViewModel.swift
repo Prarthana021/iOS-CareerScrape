@@ -34,6 +34,7 @@ class AuthViewModel: ObservableObject {
                 switch result {
                 case .success:
                     self?.isLoggedIn=true
+                    print("Login sucessful")
                 case .failure(let error):
                     self?.errorMessage=error.localizedDescription
                 }
