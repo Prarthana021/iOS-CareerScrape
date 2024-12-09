@@ -25,7 +25,6 @@ struct JobView: View{
                         
                         VStack(alignment: .leading){
                             HStack{
-                                
                                 Text(job.jobTitle).font(.headline).fontWeight(.bold)
                                 Spacer()
                                 HStack{
@@ -51,7 +50,9 @@ struct JobView: View{
                 }.navigationTitle("Job Listings")
             }
             .onAppear {
-                viewModel.fetchJobs()
+                if viewModel.jobs.isEmpty && !viewModel.isLoading{
+                    viewModel.fetchJobs()
+                }
             }
         }
     }
