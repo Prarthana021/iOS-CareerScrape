@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct iOS_CareerScrapeApp: App {
+    @StateObject private var authModel = AuthViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(authModel)
         }
     }
 }
