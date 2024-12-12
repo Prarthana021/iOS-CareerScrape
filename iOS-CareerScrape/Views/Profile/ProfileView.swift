@@ -11,39 +11,94 @@ struct ProfileView: View {
     @StateObject private var viewModel = UserViewModel()
     @EnvironmentObject private var authModel: AuthViewModel
     var body: some View {
-        if viewModel.isLoading {
-            ProgressView("Loading...")
-        } else if let error = viewModel.error {
-            Text("Error: \(error.localizedDescription)")
-        }
-        else{
-            var followers = viewModel.user?.followers
-            var followings = viewModel.user?.following
-            var followersCount = followers?.count ?? 0
-            var followingsCount = followings?.count ?? 0
-            
-            VStack {
-                HStack{
-                    VStack{
-                        Text("Followers")
-                        Text("\(followersCount)")
+        NavigationView{
+            Group{
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else if let error = viewModel.error {
+                    Text("Error: \(error.localizedDescription)")
+                }
+                else if let user = viewModel.user {
+                    VStack {
+                        HStack(alignment: .center, spacing: 20){
+                            VStack{
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                    .clipShape(Circle())
+                                    .overlay(Circle().stroke(Color.gray, lineWidth: 2))
+                                    .shadow(radius: 2)
+                                    .padding(5)
+                                Text("@\(user.username)").font(.headline).foregroundStyle(.primary).fontWeight(.bold)
+                                
+                                HStack{
+                                    Text("Admin").font(.subheadline).foregroundStyle(.gray).fontWeight(.bold)
+                                    if user.isAdmin{
+                                        Image(systemName: "checkmark.seal.fill").foregroundStyle(.green)
+                                    }
+                                    else{
+                                        Image(systemName: "xmark.circle.fill").foregroundStyle(.red)
+                                    }
+                                }
+                            }
+                            
+                            HStack(spacing: 40){
+                                VStack{
+                                    Text("Followers")
+                                        .font(.subheadline).foregroundStyle(.gray)
+                                    Text("\(user.followers.count)")
+                                        .font(.title3)
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(.primary)
+                                }
+                                VStack{
+                                    Text("Following")
+                                        .font(.subheadline).foregroundStyle(.gray)
+                                    Text("\(user.following.count)").font(.title3)
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(.primary)
+                                }
+                            }.padding()
+                            Spacer()
+                        }
+                        
+                        Text("Interested Job Roles").font(.title2).frame(maxWidth: .infinity, alignment: .leading).padding(15).fontWeight(.bold)
+                        
+                        if user.interestedJobs.isEmpty {
+                            Text("No interested job roles available.")
+                                .foregroundColor(.gray)
+                                .italic()
+                        } else {
+                            List(user.interestedJobs, id: \.self) { job in
+                                Text(job).padding(10)
+                            }
+                        }
+                        Spacer()
+                        
+                        Link(destination: URL(string: "http://s.com")!)
+                        {
+                            Text("Edit Profile")
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                        }
+                        
                     }
-                    VStack{
-                        Text("Following")
-                        Text("\(followingsCount)")
-                    }
+                    
+                    
                 }
             }
-            .padding()
+        }.padding()
             .onAppear {
                 print("User logged in state confirmed, fetching user data...")
                 if authModel.isLoggedIn && viewModel.user == nil{
                     viewModel.fetchCurrentUser()
                 }
-                
+                viewModel.fetchCurrentUser()
             }
-        }
-        
     }
 }
 
