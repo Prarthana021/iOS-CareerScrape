@@ -13,9 +13,8 @@ struct ContentView: View {
     var body: some View {
         Group{
             if authModel.isLoggedIn{
-                //HomeView()
-//                JobView()
-                ProfileView()
+                  HomeView()
+//                ProfileView()
             }
             else{
                 LoginView()

@@ -13,12 +13,12 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack() {
-                Image("logo6")
-                    .resizable()
-                    .frame(width: 380, height: 90)
-                
-                    .padding(.top, -106)
-                    .padding(.bottom, 5)
+//                Image("logo6")
+//                    .resizable()
+//                    .frame(width: 380, height: 90)
+//                
+//                    .padding(.top, -106)
+//                    .padding(.bottom, 5)
                 
                 Text("Welcome to CareerScrape!")
                     .font(.title)
@@ -26,15 +26,15 @@ struct LoginView: View {
                     .padding([.top, .bottom], 2)
                     .shadow(radius: 9.0, x: 10, y: 10)
                 
-                Image("prathu")
-                    .resizable()
-                    .frame(width: 200, height: 180)
-                    .clipShape(Circle())
-                    .overlay(Circle()
-                        .stroke(Color.white, lineWidth: 3))
-                    .shadow(radius: 9.0, x: 20, y: 10)
-                    .padding(.bottom, 40)
-                
+//                Image("prathu")
+//                    .resizable()
+//                    .frame(width: 200, height: 180)
+//                    .clipShape(Circle())
+//                    .overlay(Circle()
+//                        .stroke(Color.white, lineWidth: 3))
+//                    .shadow(radius: 9.0, x: 20, y: 10)
+//                    .padding(.bottom, 40)
+                Spacer()
                 VStack(alignment: .leading, spacing: 15) {
                     TextField("Username", text: $viewModel.username)
                         .autocapitalization(.none)

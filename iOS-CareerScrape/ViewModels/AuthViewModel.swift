@@ -70,4 +70,10 @@ class AuthViewModel: ObservableObject {
             
         }
     }
+    func logOut() {
+            isLoggedIn = false
+            UserDefaults.standard.removeObject(forKey: "jwtToken")
+            UserDefaults.standard.removeObject(forKey: "currentUser")
+        }
+
 }
