@@ -17,10 +17,7 @@ struct UserListView: View {
                 .padding(.top, 20)
             
             List(users) { user in
-                Button(action: {
-                    // Add action for user selection, e.g., view user profile
-                    print("Selected \(user.username)")
-                }) {
+                NavigationLink(destination: ProfileView(friendUser: user)) {
                     HStack {
                         Text("@\(user.username)")
                             .font(.headline)
@@ -46,11 +43,27 @@ struct UserListView: View {
     }
 }
 
-//struct UserListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserListView(users: [
-//            User(username: "johndoe"),
-//            User(username: "janedoe")
-//        ])
-//    }
-//}
+struct UserListView_Previews: PreviewProvider {
+    static var previews: some View {
+        UserListView(users: [
+            User(id: "123e4567-e89b-12d3-a456-426614174000",
+                 username: "dummyuser",
+                 email: "dummyuser@example.com",
+                 //                 password: "dummyPassword123",
+                 followers: [],
+                 following: [],
+                 interestedJobs: [],
+                 isAdmin: false
+                ),
+            User(id: "987e6543-e21c-45d3-b321-789012345678",
+                 username: "testuser",
+                 email: "testuser@example.com",
+                 //                 password: "securePassword321",
+                 followers: ["123e4567-e89b-12d3-a456-426614174000"],
+                 following: [],
+                 interestedJobs: ["Software Engineer", "Data Scientist"],
+                 isAdmin: true
+                )
+        ])
+    }
+}
