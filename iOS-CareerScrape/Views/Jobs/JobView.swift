@@ -38,7 +38,7 @@ struct JobView: View{
         else{
             NavigationView{
                 VStack{
-                    SearchBar(text: $searchText, placeholder: "Search by title, location, or company")
+                    SearchBar(text: $searchText, placeholder: "Search by title, location, or company").padding()
                     List(filterJobs, id: \.id){ job in
                         NavigationLink(destination: JobDetailView(job: job)){
                             
@@ -65,12 +65,14 @@ struct JobView: View{
                                 
                             }
                             
-                        }
+                        }.navigationTitle("Job Listings")
                         
-                    }.navigationTitle("Job Listings")
+                    }
                 }
                 
-            }.onAppear {
+            }
+            
+            .onAppear {
                 if viewModel.jobs.isEmpty && !viewModel.isLoading{
                     viewModel.fetchJobs()
                 }
