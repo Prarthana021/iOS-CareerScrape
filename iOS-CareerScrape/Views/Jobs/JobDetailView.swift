@@ -10,11 +10,10 @@ import SwiftUI
 
 struct JobDetailView:View {
     let job:Job
-    
+    @State private var isSaved: Bool = false
     var body: some View {
         let formattedExactDate = formatDate(job.exactDate)
         let formatPulledDate = formatDate(job.pulledDate)
-        
         VStack{
             ScrollView(.vertical){
                 VStack(alignment: .leading, spacing:16){
@@ -51,6 +50,24 @@ struct JobDetailView:View {
                 
             }
             Spacer()
+//            Link(destination: URL(string: job.jobLink)!) {
+//                Text("Save Job")
+//                    .font(.headline)
+//                    .padding()
+//                    .frame(maxWidth: .infinity)
+//                    .background(Color.black)
+//                    .foregroundColor(.white)
+//                    .cornerRadius(8)
+//            }
+            Button(action: toggleSaveJob){
+                Text(isSaved ? "Unsave Job" : "Save Job")
+                    .font(.headline)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }
             Link(destination: URL(string: job.jobLink)!) {
                 Text("Apply Now")
                     .font(.headline)
@@ -62,8 +79,67 @@ struct JobDetailView:View {
             }
             
         }.padding()
+            .onAppear{
+                isSaved = JobManager.shared.isJobSaved(job)
+            }
         
         
+    }
+    private func toggleSaveJob(){
+        if isSaved{
+            JobManager.shared.unsaveJob(job)
+        }
+        else{
+            JobManager.shared.saveJob(job)
+        }
+        isSaved.toggle()
+    }
+//    private func checkIfJobSaved() {
+//        let savedJobs = UserDefaults.standard.savedJobs
+//        isSaved = savedJobs.contains(where: { $0.id = job.id })
+//    }
+}
+
+class JobManager{
+    static let shared = JobManager()
+    private let savedJobsKey = "savedJobs"
+    
+    private init(){
+        
+    }
+    func saveJob(_ job: Job){
+        var savedJobs = getSavedJobs()
+        if !savedJobs.contains(where: {$0.id == job.id}){
+            savedJobs.append(job)
+            saveJobsToStorage(savedJobs)
+        }
+    }
+    func unsaveJob(_ job: Job){
+        var savedJobs = getSavedJobs()
+        savedJobs.removeAll(where: {$0.id == job.id})
+        saveJobsToStorage(savedJobs)
+        
+    }
+    func isJobSaved(_ job: Job) -> Bool{
+        let savedJobs = getSavedJobs()
+        return savedJobs.contains(where: {$0.id == job.id})
+    }
+    func getSavedJobs() -> [Job]{
+        guard let data = UserDefaults.standard.data(forKey: savedJobsKey),
+              let jobs = try? JSONDecoder().decode([Job].self, from: data) else {
+            return []
+        }
+        return jobs
+    }
+    
+    func saveJobsToStorage(_ jobs: [Job]){
+        do{
+            let encodeData = try JSONEncoder().encode(jobs)
+            UserDefaults.standard.set(encodeData, forKey: savedJobsKey)
+        }
+        catch{
+            print("Failed to save jobs: \(error.localizedDescription)")
+        }
     }
 }
 //struct JobDetailView_Previews: PreviewProvider {
@@ -83,6 +159,6 @@ struct JobDetailView:View {
 //            exactDate: "2024-10-17T09:00:00Z",
 //            jobPosted: "3 days ago"
 //        ))
-//        
+//
 //    }
 //}
