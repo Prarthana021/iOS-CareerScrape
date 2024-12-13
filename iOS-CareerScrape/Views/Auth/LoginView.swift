@@ -13,12 +13,13 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack() {
-                //                Image("logo6")
-                //                    .resizable()
-                //                    .frame(width: 380, height: 90)
-                //                
-                //                    .padding(.top, -106)
-                //                    .padding(.bottom, 5)
+                Image("logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 350)
+                                    .padding(.top, 40)
+                                    .padding(.bottom, 10)
+
                 
                 Text("Welcome to CareerScrape!")
                     .font(.title)
