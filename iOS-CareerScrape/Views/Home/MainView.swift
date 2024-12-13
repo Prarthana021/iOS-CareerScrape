@@ -80,6 +80,7 @@ struct MainView: View {
             }
             .navigationTitle("CareerScrape")
             .onAppear {
+                
                 fetchQuotes { fetchedQuotes in
                     if let fetchedQuotes = fetchedQuotes {
                         quotes = fetchedQuotes
@@ -87,6 +88,7 @@ struct MainView: View {
                     isLoading = false
                 }
                 savedJobs = JobManager.shared.getSavedJobs()
+                
             }
         }
     }
