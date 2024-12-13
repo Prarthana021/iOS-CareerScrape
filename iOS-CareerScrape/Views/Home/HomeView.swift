@@ -13,24 +13,31 @@ struct HomeView: View{
     @State private var isMenuOpen: Bool = false
     
     enum Tab{
-        case home, profile
+        case home, profile, job
     }
+    
     
     var body: some View {
         NavigationStack {
             ZStack {
                 TabView(selection: $selectedTab) {
-                    JobView()
+                    
+                    MainView()
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
                         .tag(Tab.home)
-                    
+                    JobView()
+                        .tabItem{
+                            Label("Jobs", systemImage: "cube.box")
+                        }
+                        .tag(Tab.job)
                     ProfileView()
                         .tabItem {
                             Label("Profile", systemImage: "person.fill")
                         }
                         .tag(Tab.profile)
+                    
                 }
                 
                 // Menu overlay
@@ -55,6 +62,7 @@ struct HomeView: View{
                             isMenuOpen.toggle()
                         }
                     }) {
+                        
                         Image(systemName: "line.horizontal.3")
                             .imageScale(.large)
                     }

@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+// TODO: search_user, saved_jobs, follow and following feature and logo in pages &&&& load db
+// TODO: future things .....
 struct ContentView: View {
     @EnvironmentObject var authModel: AuthViewModel
     @EnvironmentObject private var viewModel: AuthViewModel
@@ -14,7 +15,6 @@ struct ContentView: View {
         Group{
             if authModel.isLoggedIn{
                   HomeView()
-//                ProfileView()
             }
             else{
                 LoginView()
@@ -22,8 +22,6 @@ struct ContentView: View {
         }.onAppear{
             print("auth please...", authModel.isLoggedIn)
         }
-        
-        
     }
 }
 
