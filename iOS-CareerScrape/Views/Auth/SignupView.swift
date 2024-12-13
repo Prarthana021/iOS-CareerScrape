@@ -13,10 +13,6 @@ struct SignUpView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                // Set the entire background color to the container color
-                Color(red: 245/255, green: 234/255, blue: 251/255) // #F5EAFB
-                    .edgesIgnoringSafeArea(.all)
-                
                 VStack {
                     
                     // Container box for textfields and sign-up button
@@ -79,37 +75,35 @@ struct SignUpView: View {
                         }) {
                             Text("Sign Up")
                                 .font(.headline)
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(
-                                    Color(red: 255/255, green: 183/255, blue: 178/255) // #FFB7B2
-                                )
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
+                                .frame(width: 200, height: 60)
+                                .background(Color.black) // Consistent button color
+                                .cornerRadius(20.0)
+                                .shadow(radius: 10.0, x: 5, y: 10)
                         }
                         
-                        // Log in with Google button
-                        Button(action: {
-                            // Handle Google login action here
-                            print("login with google")
-                        }) {
-                            HStack {
-                                Image("logogoogle") // Use the custom Google logo image from assets
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 50, height: 40)
-                                
-                                Text("Log in with Google")
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color(red: 233/255, green: 216/255, blue: 223/255))
-                            .cornerRadius(10)
-                            .shadow(radius: 5)
-                        }
+                        //                        // Log in with Google button
+                        //                        Button(action: {
+                        //                            // Handle Google login action here
+                        //                            print("login with google")
+                        //                        }) {
+                        //                            HStack {
+                        //                                Image("logogoogle") // Use the custom Google logo image from assets
+                        //                                    .resizable()
+                        //                                    .scaledToFit()
+                        //                                    .frame(width: 50, height: 40)
+                        //                                
+                        //                                Text("Log in with Google")
+                        //                                    .font(.headline)
+                        //                                    .foregroundColor(.black)
+                        //                            }
+                        //                            .padding()
+                        //                            .frame(maxWidth: .infinity)
+                        //                            .background(Color(red: 233/255, green: 216/255, blue: 223/255))
+                        //                            .cornerRadius(10)
+                        //                            .shadow(radius: 5)
+                        //                        }
                         
                         // Already have an account? Sign In message
                         HStack {
@@ -123,18 +117,7 @@ struct SignUpView: View {
                         .padding(.bottom, 20)
                     }
                     .padding(20)
-                    .frame(height: 650) // Increased height of the container
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [
-                                Color(red: 245/255, green: 234/255, blue: 251/255),  // #F5EAFB
-                                Color(red: 254/255, green: 197/255, blue: 187/255),  // Light pink (#FEC5BB)
-                                Color(red: 245/255, green: 235/255, blue: 224/255)   // Cream (#F5EBE0)
-                            ]),
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
-                    )
+                    .frame(height: 650)
                     .cornerRadius(20)
                     .shadow(radius: 5)
                     .padding(.horizontal, 20)
