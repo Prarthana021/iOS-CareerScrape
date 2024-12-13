@@ -93,7 +93,7 @@ struct SignUpView: View {
                         //                                    .resizable()
                         //                                    .scaledToFit()
                         //                                    .frame(width: 50, height: 40)
-                        //                                
+                        //
                         //                                Text("Log in with Google")
                         //                                    .font(.headline)
                         //                                    .foregroundColor(.black)
